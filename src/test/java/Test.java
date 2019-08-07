@@ -1,15 +1,18 @@
+import com.homework.bean.Employee;
+import com.homework.service.EmployeeFinder;
+import com.homework.service.EmployeeRepository;
 import com.homework.utils.FileUtil;
 
-/**
- * @author ：old_uncle_zhang
- * @date ：Created in 2019/8/7 21:40
- * @description：
- * @modified By：
- */
+import java.util.List;
+
 public class Test {
 
     public static void main(String[] args) {
-        String s = FileUtil.readSystemPathFile("D:\\Test\\test.txt");
-        System.err.println(s);
+        List<String> strings = FileUtil.readFile("D:\\Test\\test.txt");
+        System.err.println(strings);
+
+        List<Employee> employeeList = EmployeeRepository.getInstance().buildMultiEmployee(strings);
+
+        EmployeeFinder.getInstance().getBirthdayOnCurrentDayEmployees(employeeList);
     }
 }
